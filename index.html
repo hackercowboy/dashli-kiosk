@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <style>
+    body {
+        margin: 0px auto;
+        background-color:#000;
+        overflow:hidden;
+    }
+
+    iframe {
+      border: none;
+      overflow: hidden;
+    }
+  </style>
+  <script>
+    window.$ = window.jQuery = require('jquery');
+    $(() => {
+      var electron = require('electron');
+      var currentWindow = electron.remote.getCurrentWindow();
+      var url = currentWindow.URL;
+
+      $('#content').append(`<iframe src="${url}" style="width: ${window.innerWidth}px; height: ${window.innerHeight}px;" sandbox="allow-scripts allow-same-origin"/>`);
+    });
+  </script>
+</head>
+
+<body>
+  <div id="content">
+  </div>
+</body>
+
+</html>
