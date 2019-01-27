@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, screen } from 'electron';
 
 let window = null;
 const url = process.env.URL;
@@ -11,6 +11,8 @@ app.on('window-all-closed', () => {
 
 app.on('ready', () => {
   window = new BrowserWindow({
+    width: screen.width,
+    height: screen.height,
     kiosk: true,
     fullscreen: true,
     frame: false,
