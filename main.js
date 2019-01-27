@@ -1,7 +1,7 @@
 import { app, BrowserWindow } from 'electron';
 
 let window = null;
-let url = process.env.URL;
+const url = process.env.URL;
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
@@ -12,6 +12,7 @@ app.on('window-all-closed', () => {
 app.on('ready', () => {
   window = new BrowserWindow({
     kiosk: true,
+    fullscreen: true,
     frame: false,
     webPreferences: { webSecurity: false, allowRunningInsecureContent: true },
   });
@@ -21,6 +22,7 @@ app.on('ready', () => {
   window.webContents.session.webRequest.onHeadersReceived({}, (detail, callback) => {
     const xFrameOriginKey = Object.keys(detail.responseHeaders).find(header => String(header).match(/^x-frame-options$/i));
     if (xFrameOriginKey) {
+      /* eslint-disable no-param-reassign */
       delete detail.responseHeaders[xFrameOriginKey];
     }
     callback({ cancel: false, responseHeaders: detail.responseHeaders });
