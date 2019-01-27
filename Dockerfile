@@ -1,15 +1,11 @@
 FROM node:8
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN apt-get update
+RUN apt-get install -y --no-install-recommends \
   apt-utils \
   clang \
-  xserver-xorg-core \
-  xserver-xorg-input-all \
-  xserver-xorg-video-fbdev \
-  xorg \
   libxcb-image0 \
   libxcb-util0 \
-  xdg-utils \
   libdbus-1-dev \
   libgtk-3-dev \
   libnotify-dev \
@@ -23,8 +19,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   libnss3-dev \
   libsmbclient \
   libssh-4 \
-  fbset \
   libexpat-dev
+
+RUN apt-get install -y --no-install-recommends \
+  xorg \
+  xserver-xorg-core \
+  xserver-xorg-input-all \
+  xserver-xorg-video-fbdev \
+  xdg-utils \
+  fbset
 
 RUN echo "#!/bin/bash" > /etc/X11/xinit/xserverrc \
   && echo "" >> /etc/X11/xinit/xserverrc \
