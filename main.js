@@ -1,7 +1,9 @@
-import { app, BrowserWindow, screen } from 'electron';
+import { app, BrowserWindow } from 'electron';
 
 let window = null;
 const url = process.env.URL;
+const width = process.env.WIDTH || 1920;
+const height = process.env.HEIGHT || 1080;
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
@@ -11,8 +13,8 @@ app.on('window-all-closed', () => {
 
 app.on('ready', () => {
   window = new BrowserWindow({
-    width: screen.width,
-    height: screen.height,
+    width,
+    height,
     kiosk: true,
     fullscreen: true,
     frame: false,
