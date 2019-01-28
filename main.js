@@ -20,6 +20,8 @@ app.on('ready', () => {
   });
 
   window.URL = url;
+  window.WIDTH = width;
+  window.HEIGHT = height;
 
   window.webContents.session.webRequest.onHeadersReceived({}, (detail, callback) => {
     const xFrameOriginKey = Object.keys(detail.responseHeaders).find(header => String(header).match(/^x-frame-options$/i));

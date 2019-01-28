@@ -15,8 +15,6 @@
     iframe {
       border: none;
       overflow: hidden;
-      height: 100vh;
-      width: 100%;
     }
   </style>
   <script>
@@ -25,8 +23,10 @@
       var electron = require('electron');
       var currentWindow = electron.remote.getCurrentWindow();
       var url = currentWindow.URL;
+      var width = currentWindow.WIDTH;
+      var height = currentWindow.HEIGHT;
 
-      $('#content').append(`<iframe src="${url}" sandbox="allow-scripts allow-same-origin" scrolling="no"/>`);
+      $('#content').append(`<iframe src="${url}" style="width: ${width}px; height: ${height}px;" sandbox="allow-scripts allow-same-origin" scrolling="no"/>`);
     });
   </script>
 </head>
