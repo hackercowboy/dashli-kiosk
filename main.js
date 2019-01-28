@@ -13,8 +13,8 @@ app.on('window-all-closed', () => {
 
 app.on('ready', () => {
   window = new BrowserWindow({
-    width,
-    height,
+    width: parseInt(width, 10),
+    height: parseInt(height, 10),
     frame: false,
     webPreferences: { webSecurity: false, allowRunningInsecureContent: true },
   });
