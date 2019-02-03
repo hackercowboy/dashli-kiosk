@@ -1,31 +1,23 @@
-FROM node:8-jessie-slim
+FROM node:8-stretch-slim
+
+RUN echo "deb http://deb.debian.org/debian testing non-free contrib main" >> /etc/apt/sources.list
 
 RUN apt-get update
-RUN apt-get install -y --no-install-recommends \
-  apt-utils \
-  clang \
-  fbset \
-  libasound2-dev \
-  libcap-dev \
-  libcups2-dev \
-  libdbus-1-dev \
-  libexpat-dev \
+
+RUN apt-get -y --no-install-recommends install \ 
+  libasound2 \
   libgconf2-dev \
-  libgnome-keyring-dev \
   libgtk-3-dev \
-  libnotify-dev \
-  libnss3-dev \
-  libsmbclient \
-  libssh-4 \
-  libxcb-image0 \
-  libxcb-util0 \
+  libgtkextra-dev \
+  libnss3 \
+  libx11-xcb-dev \
   libxss1 \
   libxtst-dev \
-  xdg-utils \
-  xorg \
-  xserver-xorg-core \
-  xserver-xorg-input-all \
+  xinit \
+  xserver-xorg \
   xserver-xorg-video-fbdev
+
+RUN apt-get -t testing -y --no-install-recommends install fonts-noto-color-emoji
 
 RUN rm -rf /var/lib/apt/lists/*
 
@@ -51,3 +43,4 @@ ENV INITSYSTEM on
 
 # Start app
 CMD ["bash", "/usr/src/app/start.sh"]
+
